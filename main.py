@@ -38,6 +38,10 @@ def main():
             if ast.collisionCheck(player):
                 print("GAME OVER")
                 game_over = True
+            for bullet in shots:
+                if ast.collisionCheck(bullet):
+                    ast.split()
+                    bullet.kill()
 
         screen.fill("black")
 
