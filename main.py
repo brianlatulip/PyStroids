@@ -31,6 +31,10 @@ def main():
                 return
             
         updateable.update(dt) #updates items in updateable group
+        for ast in asteroids:
+            if ast.collisionCheck(player):
+                print("GAME OVER")
+                game_over = True
 
         screen.fill("black")
 
