@@ -3,7 +3,8 @@ import random
 from asteroid import Asteroid
 from constants import *
 
-
+#defines AsteroidField class which is a sub-class of pygame.Sprite
+#sets the edges of the asteroid field which is treated as the "spawnable area" for asteroids
 class AsteroidField(pygame.sprite.Sprite):
     edges = [
         [
@@ -28,14 +29,18 @@ class AsteroidField(pygame.sprite.Sprite):
         ],
     ]
 
+    #initializes the asteroid field with a spawn timer
     def __init__(self):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.spawn_timer = 0.0
 
+    #spawns asteroids by created an asteroid object at specified position and setting travel velocity
     def spawn(self, radius, position, velocity):
         asteroid = Asteroid(position.x, position.y, radius)
         asteroid.velocity = velocity
 
+    #updates the asteroid field each frame (dt) 
+    #if its been "spawn timer" amount of time since last spawn, then spawn asteroid at random edge
     def update(self, dt):
         self.spawn_timer += dt
         if self.spawn_timer > ASTEROID_SPAWN_RATE:
@@ -49,3 +54,4 @@ class AsteroidField(pygame.sprite.Sprite):
             position = edge[1](random.uniform(0, 1))
             kind = random.randint(1, ASTEROID_KINDS)
             self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
+            

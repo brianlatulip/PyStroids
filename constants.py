@@ -1,3 +1,4 @@
+#list of constant values used throughout project
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 ASTEROID_MIN_RADIUS = 20
